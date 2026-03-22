@@ -148,7 +148,6 @@ struct CBool1
 class CCompressDialog: public NWindows::NControl::CModalDialog
 {
 public:
-  friend class COutputArcPathsDialog;
   CBool1 SymLinks;
   CBool1 HardLinks;
   CBool1 AltStreams;
@@ -416,7 +415,6 @@ public:
   void EnableMultiCombo(unsigned id);
   void FormatChanged(bool isChanged);
 
-  void OnButtonOutputPaths();
   void OnButtonSetArchivePath(unsigned index);
   void OnButtonSetArchive();
   bool IsSFX();
@@ -459,36 +457,6 @@ public:
       _outputPathRowStep(0),
       _outputLayout_BaseWindowX(0),
       _outputLayout_BaseWindowY(0)
-      {}
-};
-
-
-class COutputArcPathsDialog: public NWindows::NControl::CModalDialog
-{
-  CCompressDialog *cd;
-  NWindows::NControl::CEdit _pathsEdit;
-
-  void AddPathFromBrowse();
-
-  virtual bool OnInit() Z7_override;
-  virtual bool OnButtonClicked(unsigned buttonID, HWND buttonHWND) Z7_override;
-  virtual void OnOK() Z7_override;
-
-public:
-  UStringVector Owners;
-  UStringVector Paths;
-  bool PerItemMode;
-  UStringVector AvailableItems;
-
-  INT_PTR Create(HWND wndParent = NULL)
-  {
-    BIG_DIALOG_SIZE(320, 200);
-    return CModalDialog::Create(SIZED_DIALOG(IDD_COMPRESS_OUTPUT_PATHS), wndParent);
-  }
-
-  COutputArcPathsDialog(CCompressDialog *cdLoc):
-      cd(cdLoc),
-      PerItemMode(false)
       {}
 };
 

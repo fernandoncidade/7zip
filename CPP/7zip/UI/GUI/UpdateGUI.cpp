@@ -37,7 +37,7 @@ UString HResultToMessage(HRESULT errorCode);
 static void AddUniquePath(UStringVector &paths, const UString &path)
 {
   FOR_VECTOR (i, paths)
-    if (paths[i] == path)
+    if (path.IsEqualTo_NoCase(paths[i]))
       return;
   paths.Add(path);
 }
@@ -50,7 +50,8 @@ static void PrepareWorkingDirForArchivePath(const UString &userArchivePath, CUpd
   if (workDirInfo.Mode != NWorkDir::NMode::kCurrent)
   {
     FString fullPath;
-    MyGetFullPathName(us2fs(userArchivePath), fullPath);
+    if (!MyGetFullPathName(us2fs(userArchivePath), fullPath))
+      return;
     FString namePart;
     options.WorkingDir = GetWorkDir(workDirInfo, fullPath, namePart);
     CreateComplexDir(options.WorkingDir);

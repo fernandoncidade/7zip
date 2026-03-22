@@ -63,7 +63,6 @@ BEGIN
   LTEXT     "", IDT_COMPRESS_ARCHIVE_FOLDER, m + xArcFolderOffs, m, xc - xArcFolderOffs, 8
   LTEXT     "&Count:", IDT_COMPRESS_OUTPUT_PATHS_NUM, m, 20, xArcFolderOffs, 8
   COMBOBOX  IDC_COMPRESS_OUTPUT_PATHS_NUM, m + xArcFolderOffs, 18, 56, 80, MY_COMBO
-  PUSHBUTTON  "Pa&ths...", IDB_COMPRESS_OUTPUT_PATHS, m + xArcFolderOffs + 62, 18, 54, bys
   CONTROL   "Map selected items to output archives", IDX_COMPRESS_SEPARATE_ITEMS, MY_CHECKBOX,
             m + xArcFolderOffs + 122, 20, xc - xArcFolderOffs - 122, 10
 
@@ -166,28 +165,6 @@ BEGIN
   PUSHBUTTON     "Cancel", IDCANCEL, bx2, by, bxs, bys
   PUSHBUTTON     "Help",   IDHELP,   bx1, by, bxs, bys
 END
-
-
-#define xcPaths 320
-#define ycPaths 200
-#define xsPaths (xcPaths + m + m)
-#define ysPaths (ycPaths + m + m)
-#define bxPaths1 (xsPaths - m - bxs)
-#define bxPaths2 (bxPaths1 - m - bxs)
-#define byPaths (ysPaths - m - bys)
-
-IDD_COMPRESS_OUTPUT_PATHS  DIALOG  0, 0, xsPaths, ysPaths  MY_MODAL_DIALOG_STYLE  MY_FONT
-CAPTION "Output Paths"
-BEGIN
-  LTEXT     "One archive output path per line:", IDT_COMPRESS_OUTPUT_PATHS_INFO, m, m, xcPaths, 8
-  EDITTEXT  IDE_COMPRESS_OUTPUT_PATHS, m, 20, xcPaths, ycPaths - bys - m - 24,
-            ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL | WS_HSCROLL | ES_WANTRETURN
-
-  PUSHBUTTON  "&Add...", IDB_COMPRESS_OUTPUT_PATHS_ADD, m, byPaths, bxs, bys
-  DEFPUSHBUTTON  "OK",     IDOK,     bxPaths2, byPaths, bxs, bys, WS_GROUP
-  PUSHBUTTON     "Cancel", IDCANCEL, bxPaths1, byPaths, bxs, bys
-END
-
 
 #ifdef UNDER_CE
 
