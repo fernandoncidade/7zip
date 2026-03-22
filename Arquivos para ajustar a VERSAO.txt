@@ -1,0 +1,15 @@
+Arquivos para ajustar a VERSÃO quando atualizações forem implementadas:
+
+Caminhos Absolutos:
+C:\Users\ferna\DEV\CPP\7zip\CPP\7zip\UI\FileManager\AboutDialog.cpp
+C:\Users\ferna\DEV\CPP\7zip\README.md
+C:\Users\ferna\DEV\CPP\7zip\RELEASE.md
+C:\Users\ferna\DEV\CPP\7zip\.vscode\7zip-installer-task.ps1
+C:\Users\ferna\DEV\CPP\7zip\C\Util\7zipInstall\7zipInstall.c
+
+Caminho Relativos:
+CPP\7zip\UI\FileManager\AboutDialog.cpp
+README.md
+RELEASE.md
+.vscode\7zip-installer-task.ps1
+C\Util\7zipInstall\7zipInstall.c
