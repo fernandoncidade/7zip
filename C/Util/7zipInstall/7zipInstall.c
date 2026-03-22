@@ -59,8 +59,8 @@ typedef enum {
 static LPCSTR const k_7zip = "7-Zip";
 
 static LPCWSTR const k_Reg_Software_7zip = L"Software\\7-Zip";
-static LPCWSTR const k_Fork_DisplayName = L"7-Zip 2026.3.19.0 (x64)";
-static LPCWSTR const k_Fork_DisplayVersion = L"2026.3.19.0";
+static LPCWSTR const k_Fork_DisplayName = L"7-Zip 2026.3.22.0 (x64)";
+static LPCWSTR const k_Fork_DisplayVersion = L"2026.3.22.0";
 static LPCWSTR const k_Fork_Publisher = L"Fernando Nillsson Cidade";
 
 // #define Z7_64BIT_INSTALLER 1

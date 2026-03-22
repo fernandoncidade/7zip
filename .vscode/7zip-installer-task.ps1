@@ -12,7 +12,7 @@ $RepoRoot = [System.IO.Path]::GetFullPath((Join-Path $ScriptDir ".."))
 $VcVars64 = "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat"
 $VcVarsAmd64X86 = "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
 
-$ReleaseBuild = "2026.3.19.0"
+$ReleaseBuild = "2026.3.22.0"
 
 $DistRoot = "D:\MISCELANEAS\VSCode\7zip\dist"
 $WorkRoot = Join-Path $DistRoot "installer-full"
@@ -257,7 +257,7 @@ function Normalize-AboutLangEntries {
   Assert-PathExists -Path $RepoLangDir -Label "Diretorio de idiomas"
 
   $defaultNote = "This version refers to a fork, customized to meet the needs of the developer below."
-  $defaultRepo = "Repository: https://github.com/fernandoncidade/7zip"
+  $defaultRepo = "Repository: https://github.com/fernandoncidade/7zip/tree/simultaneous_multiple_packaging?tab=readme-ov-file"
 
   foreach ($langFile in (Get-ChildItem $RepoLangDir -File)) {
     $lines = [System.Collections.Generic.List[string]]::new()

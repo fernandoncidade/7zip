@@ -344,6 +344,55 @@ Essas alterações reduzem falhas como:
 
 A release `7-Zip Fork 2026.3.19.0` transforma o projeto em uma variante operacionalmente mais orientada a fluxos avançados de empacotamento, com suporte nativo a múltiplos destinos por item, identidade institucional do fork, pipeline de distribuição autocontido, cobertura de localização ampliada e ciclo de instalação e desinstalação mais controlado.
 
+## Complemento da release `2026.3.22.0`
+
+Esta seção complementa as notas históricas da versão `2026.3.19.0` com ajustes adicionais consolidados na branch como versão `2026.3.22.0`, sem substituir o conteúdo anterior.
+
+### Título sugerido
+
+`Remove incomplete Paths dialog and add LangUtils IntelliSense fallback`
+
+### Descrição
+
+Este commit remove o fluxo inacabado de UI do botão `Paths...` da janela de compressão e mantém as linhas já existentes de caminhos de saída como único fluxo suportado para múltiplos destinos de arquivo.
+
+### Alterações técnicas
+
+- remoção do botão `Paths...` do recurso da janela de compressão;
+- remoção da declaração e da implementação do handler `OnButtonOutputPaths()`;
+- remoção da classe auxiliar `COutputArcPathsDialog`;
+- remoção dos IDs de recurso dedicados e da dialog associada a `IDD_COMPRESS_OUTPUT_PATHS`;
+- remoção das rotinas auxiliares de parsing/serialização usadas exclusivamente por essa dialog;
+- `OutputPathsToText()`;
+- `TextToOutputPaths()`;
+- `OutputItemArcPathsToText()`;
+- `TextToOutputItemArcPaths()`;
+- helpers relacionados à exibição e à resolução de itens.
+
+### Motivação
+
+- a dialog não fazia parte de um fluxo finalizado;
+- a janela principal de compressão já expõe múltiplos destinos de saída por meio do seletor de quantidade, dos campos de caminho de arquivo e dos botões de browse já existentes;
+- manter uma segunda superfície para edição desses caminhos duplicaria a lógica de UI/estado e aumentaria o custo de manutenção sem acrescentar funcionalidade estável.
+
+### Impacto comportamental
+
+- nenhuma lógica de formato de arquivo foi alterada;
+- nenhum comportamento do backend de compressão/atualização foi alterado;
+- o usuário continua configurando múltiplos destinos de saída pelos controles de caminho já existentes na própria janela de compressão.
+
+### Ajuste adicional em `LangUtils.h`
+
+Além disso, este commit adiciona um fallback para `LangString_OnlyFromLangFile()` quando `Z7_LANG` não está definido.
+
+#### Justificativa técnica
+
+- `CompressDialog.cpp` chama `LangString_OnlyFromLangFile()`;
+- o símbolo só era declarado quando `Z7_LANG` estava definido;
+- em algumas configurações de IDE/IntelliSense, `Z7_LANG` não fica visível para o parser, o que gerava um diagnóstico falso de “identificador não definido”, mesmo quando a configuração real de build fornecia o símbolo.
+
+O novo fallback inline mantém a interface do header consistente entre diferentes configurações, retornando string vazia quando a busca exclusiva por arquivo de idioma não está disponível. Isso não altera o comportamento esperado em builds localizados normais; apenas elimina a inconsistência percebida por análise estática e IntelliSense.
+
 ## Autoria
 
 **Fernando Nillsson Cidade**
@@ -683,6 +732,55 @@ These changes reduce issues such as:
 ## Consolidated result
 
 Release `7-Zip Fork 2026.3.19.0` turns the project into a variant more strongly oriented toward advanced packaging workflows, with native support for multiple output destinations per item, fork-specific product identity, a self-contained distribution pipeline, expanded localization coverage, and a more controlled installation and uninstallation cycle.
+
+## Complementary update `2026.3.22.0`
+
+This section complements the historical `2026.3.19.0` notes with additional changes consolidated in the branch as version `2026.3.22.0`, without replacing the previous content.
+
+### Suggested title
+
+`Remove incomplete Paths dialog and add LangUtils IntelliSense fallback`
+
+### Suggested description
+
+This commit removes the unfinished `Paths...` UI flow from the compression dialog and keeps the existing output-path rows as the only supported workflow for multiple archive destinations.
+
+### Technical changes
+
+- removed the `Paths...` button from the compression dialog resource;
+- removed the `OnButtonOutputPaths()` handler declaration and implementation;
+- removed the auxiliary `COutputArcPathsDialog` class;
+- removed the dedicated resource IDs and dialog resource associated with `IDD_COMPRESS_OUTPUT_PATHS`;
+- removed the helper parsing/serialization routines used exclusively by that dialog;
+- `OutputPathsToText()`;
+- `TextToOutputPaths()`;
+- `OutputItemArcPathsToText()`;
+- `TextToOutputItemArcPaths()`;
+- related item display and resolution helpers.
+
+### Rationale
+
+- the dialog was not part of a finalized workflow;
+- the main compression dialog already exposes multiple output destinations through the existing count selector, archive-path fields, and browse buttons;
+- keeping a second surface for editing those paths would duplicate UI/state management and increase maintenance cost without adding stable functionality.
+
+### Behavioral impact
+
+- no archive format logic was changed;
+- no compression/update backend behavior was changed;
+- users still configure multiple output destinations through the existing archive-path controls already present in the compression dialog.
+
+### Additional `LangUtils.h` adjustment
+
+This commit also adds a fallback for `LangString_OnlyFromLangFile()` when `Z7_LANG` is not defined.
+
+#### Technical rationale
+
+- `CompressDialog.cpp` calls `LangString_OnlyFromLangFile()`;
+- the symbol was only declared when `Z7_LANG` was defined;
+- in some IDE/IntelliSense configurations, `Z7_LANG` is not visible to the parser, which caused a false “identifier is undefined” diagnostic even though the real build configuration provides the symbol.
+
+The new inline fallback keeps the header interface consistent across configurations by returning an empty string when language-file-only lookup is unavailable. This does not change the intended behavior for normal localized builds; it only removes the configuration mismatch reported by static analysis and IntelliSense.
 
 ## Authorship
 

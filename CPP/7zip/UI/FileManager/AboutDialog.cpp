@@ -23,7 +23,7 @@ static const UInt32 kLangIDs[] =
 #endif
 
 #define kHomePageURL TEXT("https://www.7-zip.org/")
-#define kForkRepoURL TEXT("https://github.com/fernandoncidade/7zip")
+#define kForkRepoURL TEXT("https://github.com/fernandoncidade/7zip/tree/simultaneous_multiple_packaging?tab=readme-ov-file")
 #define kHelpTopic "start.htm"
 
 #define LLL_(quote) L##quote
@@ -49,8 +49,8 @@ bool CAboutDialog::OnInit()
   #endif
   SetItemText(IDT_ABOUT_VERSION, UString("7-Zip " MY_VERSION_CPU));
   SetItemText(IDT_ABOUT_DATE, LLL(MY_DATE));
-  SetItemText(IDT_ABOUT_FORK_VERSION, L"7-Zip 2026.3.19.0 (" LLL(MY_CPU_NAME) L")");
-  SetItemText(IDT_ABOUT_FORK_DATE, L"19/03/2026");
+  SetItemText(IDT_ABOUT_FORK_VERSION, L"7-Zip 2026.3.22.0 (" LLL(MY_CPU_NAME) L")");
+  SetItemText(IDT_ABOUT_FORK_DATE, L"22/03/2026");
   SetItemText(IDT_ABOUT_FORK_COPYRIGHT, L"Copyright (c) 2026 Fernando Nillsson Cidade");
   {
     UString s = LangString(IDT_ABOUT_INFO);
@@ -64,7 +64,7 @@ bool CAboutDialog::OnInit()
     LangString_OnlyFromLangFile(IDS_ABOUT_FORK_REPO, s);
     #endif
     if (s.IsEmpty())
-      s = L"Repository: https://github.com/fernandoncidade/7zip";
+      s = L"Repository: https://github.com/fernandoncidade/7zip/tree/simultaneous_multiple_packaging?tab=readme-ov-file";
     SetItemText(IDB_ABOUT_FORK_REPO, s);
   }
   
